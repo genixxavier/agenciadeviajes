@@ -1,0 +1,28 @@
+extends ../layout/index.pug
+block contenido
+    main.container.mt-5
+        .row
+            .col-md-12
+                h2.text-center Testimoniales
+                include ../layout/partials/testimoniales.pug
+                    
+            .col-md-12
+                h2.text-center Agrega un Testimonial
+                if(errores)
+                    each error in errores
+                        .alert.alert-danger.text-center=error.mensaje                    
+                .row.justify-content-center
+                    .col-md-8
+                        form(action="/testimoniales", method="post")
+                            .form-group
+                                label(for="nombre") Nombre
+                                input(type="text",class="form-control",id="nombre",placeholder="Tu nombre", name="nombre", value=nombre)
+                            .form-group
+                                label(for="correo") Correo Electronico
+                                input(type="email",class="form-control",id="correo",placeholder="Tu Correo Electronico", name="correo", value=correo)
+                            .form-group
+                                label(for="mensaje") Mensaje
+                                textarea#mensaje(class="form-control",name="mensaje", cols="30", rows="10", placeholder="Tu mensaje") mensaje
+                            input.btn.btn-success.btn-block(type="submit", value="Agregar")
+                            
+                            
